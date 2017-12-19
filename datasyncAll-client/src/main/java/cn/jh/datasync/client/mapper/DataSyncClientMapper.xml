@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DataSyncClientMapper">
+
+
+	<!-- 查询数据库中表 -->
+	<select id="getTablesName" resultType="string">
+		select TABLE_NAME from user_tables
+	</select>
+	<!-- 查询表的字段信息 -->
+	<select id="getColumnInfo" parameterType="map" resultType="cn.jh.datasync.client.model.ColumnInfo">
+		select * from all_tab_columns where Table_Name=UPPER(#{tableName})
+	</select>
+	<!-- 查询表中数据-->
+	<select id="getData" parameterType="map" resultType="map">
+		select * from ykt_cur.${tableName} 
+	</select>
+
+</mapper>  
+
+				
